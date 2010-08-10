@@ -1,7 +1,7 @@
 === MATRIX GALLERY ===
 Contributors: webpsilon.com
 Donate link: http://www.webpsilon.com/wordpress-plugins/matrix-gallery/
-Tags: images, matrix, 3d, photos, pictures, image gallery
+Tags: matrix, nextgen, image, picture, photo, widgets, pictures, photo-albums, Post, admin, media, gallery, images, slideshow, flash, photos, lightbox, AJAX
 Requires at least: 2.0.2
 Tested up to: 2.1
 Stable tag: 4.3
