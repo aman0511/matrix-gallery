@@ -1,9 +1,9 @@
 === MATRIX GALLERY ===
 Contributors: webpsilon.com
 Donate link: http://www.webpsilon.com/wordpress-plugins/matrix-gallery/
-Tags: matrix, nextgen, image, picture, photo, widgets, pictures, photo-albums, Post, admin, media, gallery, images, slideshow, flash, photos, lightbox, AJAX
+Tags: matrix, nextgen, image, picture, photo, widgets, pictures, photo-albums, Post, admin, media, gallery, images, slideshow, flash, photos, lightbox, AJAX, presentation, portfolio, album, posts, plugin, flip, page, book, flipping, page flip, pictures
 Requires at least: 2.0.2
-Tested up to: 2.1
+Tested up to: 3.0.1
 Stable tag: 4.3
 
 With this plugin you can create 3D photo galleries or menus from the images in a folder.
