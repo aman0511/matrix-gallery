@@ -213,7 +213,7 @@ $ligtext="";
 <!--
 swfobject.registerObject("Matrix'.$id.'-'.$contador.'");
 //-->
-</script><br/>This is a free test version, <a href="http://www.webpsilon.com/wordpress-plugins/matrix-gallery/">DOWNLOAD WEBPSILON MATRIX GALLERY</a><br/><br>Upload your images in: your_web/wp-content/plugins/matrix-gallery/images/ or change the images folder.<br/><br/>Configure the gallery: Wordpress admin->Settings->Matrix. Configure the images size, gallery style, speed, images folder, gallery width and height, images titles, images links, ...<br/>	<br/>
+</script><br/>This is a free test version, <a href="http://www.webpsilon.com/wordpress-plugins/matrix-gallery/">DOWNLOAD WEBPSILON MATRIX GALLERY</a><br/><br>Upload your images in: your_web/wp-content/plugins/matrix-gallery/images/ or change the images folder.<br/><br/>Configure the gallery: Wordpress admin->Matrix. Configure the images size, gallery style, speed, images folder, gallery width and height, images titles, images links, ...<br/>	<br/>
 The watermark, and these texts vanish with the purchase version.<br/>'.$ligtext;
 	return $output;
 }
@@ -348,10 +348,116 @@ while($conta<count($myrows)) {
 	}
 
 }
+
+
+
+
+function widget_matrix_gallery($args) {
+
+ 
+  
+    extract($args);
+	
+	  $options = get_option("widget_matrix_gallery");
+  if (!is_array( $options ))
+{
+$options = array(
+      'title' => 'Matrix Gallery',
+	  'id' => '1'
+      );
+  }
+
+	$aaux=array();
+	$aaux[0]="matrix_gallery";
+	
+  echo $before_widget;
+  echo $before_title;
+  echo $options['title'];
+  echo $after_title;
+  $aaux[1]=$options['id'];
+ echo matrix_gallery_render($aaux);
+  echo $after_widget;
+
+}
+
+
+
+function matrix_gallery_control()
+{
+  $options = get_option("widget_matrix_gallery");
+  if (!is_array( $options ))
+{
+$options = array(
+      'title' => 'Matrix Gallery',
+	  'id' => '1'
+      );
+  }
+ 
+  if ($_POST['matrix-Submit'])
+  {
+    $options['title'] = htmlspecialchars($_POST['matrix-WidgetTitle']);
+	 $options['id'] = htmlspecialchars($_POST['matrix-WidgetId']);
+    update_option("widget_matrix_gallery", $options);
+  }
+  
+  
+  global $wpdb; 
+	$table_name = $wpdb->prefix . "matrix_gallery";
+	
+	$myrows = $wpdb->get_results( "SELECT * FROM $table_name;" );
+
+if(empty($myrows)) {
+	
+	echo '
+	<p>First create a new gallery of videos, from the administration of matrix plugin.</p>
+	';
+}
+
+else {
+	$contaa1=0;
+	$selector='<select name="matrix-WidgetId" id="matrix-WidgetId">';
+	while($contaa1<count($myrows)) {
+		
+		
+		$tt="";
+		if($options['id']==$myrows[$contaa1]->id)  $tt=' selected="selected"';
+		$selector.='<option value="'.$myrows[$contaa1]->id.'"'.$tt.'>'.$myrows[$contaa1]->id.'</option>';
+		$contaa1++;
+		
+	}
+	
+	$selector.='</select>';
+	
+	
+ 
+echo '
+  <p>
+    <label for="matrix-WidgetTitle">Widget Title: </label>
+    <input type="text" id="matrix-WidgetTitle" name="matrix-WidgetTitle" value="'.$options['title'].'" /><br/>
+	<label for="matrix-WidgetTitle">matrix Video Gallery ID: </label>
+   '.$selector.'
+    <input type="hidden" id="matrix-Submit" name="matrix-Submit" value="1" />
+  </p>
+';
+}
+
+
+}
+
+
+function matrix_gallery_init(){
+	register_sidebar_widget(__('Matrix Gallery'), 'widget_matrix_gallery');
+	register_widget_control(   'Matrix Gallery', 'matrix_gallery_control', 300, 300 );
+}
+
+
+
 function matrix_gallery_add_menu(){	
 	if (function_exists('add_options_page')) {
 		//add_menu_page
-		add_options_page('matrix_gallery', 'Matrix', 8, basename(__FILE__), 'matrix_gallery_panel');
+		//add_options_page('matrix_gallery', 'Matrix', 8, basename(__FILE__), 'matrix_gallery_panel');
+		
+		add_menu_page('matrix_gallery', 'Matrix', 8, basename(__FILE__), 'matrix_gallery_panel');
 	}
 }
 if (function_exists('add_action')) {
@@ -361,4 +467,5 @@ add_action('wp_head', 'matrix_gallery_head');
 add_filter('the_content', 'matrix_gallery');
 add_action('activate_matrix_gallery/matrix_gallery.php','matrix_gallery_instala');
 add_action('deactivate_matrix_gallery/matrix_gallery.php', 'matrix_gallery_desinstala');
+add_action("plugins_loaded", "matrix_gallery_init");
 ?>
