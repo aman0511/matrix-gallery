@@ -1,4 +1,4 @@
-===   &#9733;&#9733;&#9733; MATRIX GALLERY   &#9733;&#9733;&#9733;===
+===   &#9733;&#9733;&#9733; MATRIX GALLERY: image gallery, slider, menu and more. Plugin or Widget   &#9733;&#9733;&#9733;===
   Contributors: webpsilon.com
   Donate link: http://www.webpsilon.com/wordpress-plugins/matrix-gallery/
   Tags: matrix, nextgen, image, picture, photo, widgets, pictures, photo albums, Post, admin, media, gallery, images, slideshow, flash, photos, lightbox, AJAX, presentation, portfolio, album, posts, plugin, flip, page, book, flipping, page flip, pictures, ads, buttons, carousel photos, carousel gallery, cms, effects, embed, free flash, gallery, iphone, ipod, javascript,  media library, menu, menus, MU, photo, rotate, smooth gallery, swf, widget, wordpress,
